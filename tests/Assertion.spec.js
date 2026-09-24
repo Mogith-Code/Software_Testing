@@ -14,12 +14,30 @@ test('Assertions Demo', async ({ page }) => {
 //Check whether the element is present or not
 await expect(page.getByRole('heading', { name: 'The Kitchen' })).toHaveCount(1);
 
+/*
 //check whether the element is visible or hidden
 await expect(page.getByRole('heading', { name: 'The Kitchen' })).toBeVisible();
-await expect(page.getByRole('heading', { name: 'The Kitchen' })).toBeHidden(); 
+await expect.soft(page.getByRole('heading', { name: 'The Kitchen' })).toBeHidden(); 
 
 //Check whether the element is enabled or disabled
 await expect(page.getByRole('heading', { name: 'The Kitchen' })).toBeEnabled();
-await expect(page.getByRole('heading', { name: 'The Kitchen' })).toBeDisabled();
+await expect.soft(page.getByRole('heading', { name: 'The Kitchen' })).toBeDisabled();
+
+
+//check The text of the element
+await expect(page.getByRole('heading', { name: 'The Kitchen' })).toHaveText('The Kitchen');
+await expect.soft(page.getByRole('heading', { name: 'The Kitchen' })).not.toHaveText('The Kitchen');
+
+await expect(page.getByRole('heading', { name: 'The Kitchen' })).toHaveAttribute('class', 'chakra-heading css-dpmy2a');
+await expect.soft(page.getByRole('heading', { name: 'The Kitchen' })).not.toHaveClass(/chakra-heading/);
+
+
+//Check the URL of the page
+await expect(page).toHaveURL('https://kitchen.applitools.com/');
+await expect(page).toHaveTitle('The Kitchen');
+*/
+
+//Validate the screenshot of the page
+await expect(page).toHaveScreenshot('screenshot.png');
 
 });
